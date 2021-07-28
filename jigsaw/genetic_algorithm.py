@@ -1,7 +1,7 @@
 from __future__ import print_function
 from operator import attrgetter
 from jigsaw.utils import flatten_image, assemble_image
-from jigsaw.selection import roulette_selection
+from jigsaw.selection import roulette_selection, tournament_selection
 from jigsaw.crossover import Crossover
 from jigsaw.chromosome import Chromosome
 from jigsaw.utils import ImageAnalysis, Plot, print_progress
@@ -33,11 +33,11 @@ class GeneticAlgorithm(object):
 
             new_population = []
 
-            # Elitism
+            # Elitizam
             elite = sorted(self._population, key=attrgetter("fitness"))[-self._elite_size:]
             new_population.extend(elite)
 
-            selected_parents = roulette_selection(self._population, elites=self._elite_size)
+            selected_parents = tournament_selection(self._population, elites=self._elite_size)
 
             for first_parent, second_parent in selected_parents:
                 crossover = Crossover(first_parent, second_parent)

@@ -1,5 +1,6 @@
 import random
 import bisect
+import numpy as np
 
 try:
     xrange          # Python 2
@@ -24,4 +25,21 @@ def roulette_selection(population, elites=4):
 
     return selected
     
-#TODO Dodati turnirsku selekciju
+def tournament_selection(population, elites=4):
+
+    tournament_size = 5
+    
+    def select_individual():
+        random_select = random.sample(population, tournament_size)
+        fitness_values = [individual.fitness for individual in random_select]
+        index_max = np.argmax(fitness_values)
+        
+        return random_select[index_max]
+        
+
+    selected = []
+    for i in xrange(len(population) - elites):
+        first, second = select_individual(), select_individual()
+        selected.append((first, second))
+
+    return selected

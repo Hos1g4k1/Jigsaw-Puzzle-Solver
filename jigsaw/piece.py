@@ -1,12 +1,11 @@
 class Piece(object):
 
-'''
+    '''
      Klasa koje predstavlja jedan deo slagalice
      
      image: Slika tog dela
      id: Jedinstveni identifikator
-
-'''
+    '''
 
     def __init__(self, image, index):
         self.image = image[:]
