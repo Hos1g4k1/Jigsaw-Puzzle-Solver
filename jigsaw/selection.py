@@ -7,6 +7,9 @@ try:
 except NameError:
     xrange = range  # Python 3
 
+'''
+Odabir turnirske ili ruletske selekcije
+'''
 
 def roulette_selection(population, elites=4):
 

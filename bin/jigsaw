@@ -14,8 +14,7 @@ POPULATION = 200
 
 
 def show_image(img, title):
-    if not args.verbose:
-        Plot(img, title)
+    Plot(img, title)
     plt.show()
 
 
@@ -26,7 +25,6 @@ def parse_arguments():
     parser.add_argument("--generations", type=int, default=GENERATIONS, help="Num of generations.")
     parser.add_argument("--population", type=int, default=POPULATION, help="Size of population.")
     parser.add_argument("--size", type=int, help="Single piece size in pixels.")
-    parser.add_argument("--verbose", action="store_true", help="Show best individual after each generation.")
     parser.add_argument("--save", action="store_true", help="Save puzzle result as image.")
     return parser.parse_args()
 
@@ -42,10 +40,9 @@ if __name__ == "__main__":
     print("=== Generations: {}".format(args.generations))
     print("=== Piece size:  {} px".format(piece_size))
 
-    # Let the games begin! And may the odds be in your favor!
     start = time()
     algorithm = GeneticAlgorithm(image, piece_size, args.population, args.generations)
-    solution = algorithm.start_evolution(args.verbose)
+    solution = algorithm.start_evolution()
     end = time()
 
     print("\n=== Done in {0:.3f} s".format(end - start))

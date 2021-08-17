@@ -44,7 +44,8 @@ class Chromosome(object):
                 for j in range(self.columns - 1):
                     ids = (self[i][j].id, self[i][j + 1].id)
                     fitness_value += ImageAnalysis.get_dissimilarity(ids, orientation="LR")
-            # For each two adjacent pieces in columns
+                    
+            # Za svaka dva susedna dela u kolonama
             for i in range(self.rows - 1):
                 for j in range(self.columns):
                     ids = (self[i][j].id, self[i + 1][j].id)

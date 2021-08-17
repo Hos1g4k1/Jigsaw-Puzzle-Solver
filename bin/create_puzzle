@@ -23,10 +23,10 @@ def create_puzzle(image_path, output_path, piece_size):
     image = cv2.imread(image_path)
     pieces, rows, columns = flatten_image(image, piece_size)
 
-    # Randomize pieces in order to make puzzle
+    # Mesaju se delovi
     np.random.shuffle(pieces)
 
-    # Create puzzle by stacking pieces
+    # Kreira se slagalica
     puzzle = assemble_image(pieces, rows, columns)
 
     cv2.imwrite(output_path, puzzle)

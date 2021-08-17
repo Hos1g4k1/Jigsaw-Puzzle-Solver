@@ -59,6 +59,9 @@ class Crossover(object):
         self._taken_positions.add(position)
         self._update_candidate_pieces(piece_id, position)
 
+    def _is_kernel_full(self):
+        return len(self._kernel) == self._pieces_length
+
     def _update_candidate_pieces(self, piece_id, position):
         available_boundaries = self._available_boundaries(position)
 
@@ -134,20 +137,18 @@ class Crossover(object):
 
         return boundaries
 
-    def _is_kernel_full(self):
-        return len(self._kernel) == self._pieces_length
-
     def _is_in_range(self, row_and_column):
         (row, column) = row_and_column
         return self._is_row_in_range(row) and self._is_column_in_range(column)
+        
+    def _is_column_in_range(self, column):
+        current_columns = abs(min(self._min_column, column)) + abs(max(self._max_column, column))
+        return current_columns < self._child_columns
 
     def _is_row_in_range(self, row):
         current_rows = abs(min(self._min_row, row)) + abs(max(self._max_row, row))
         return current_rows < self._child_rows
 
-    def _is_column_in_range(self, column):
-        current_columns = abs(min(self._min_column, column)) + abs(max(self._max_column, column))
-        return current_columns < self._child_columns
 
     def _update_kernel_boundaries(self, row_and_column):
         (row, column) = row_and_column

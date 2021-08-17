@@ -19,7 +19,7 @@ class GeneticAlgorithm(object):
         self._population = [Chromosome(pieces, rows, columns) for _ in range(population_size)]
         self._pieces = pieces
 
-    def start_evolution(self, verbose):
+    def start_evolution(self):
         print("=== Pieces:      {}\n".format(len(self._pieces)))
 
         ImageAnalysis.analyze_image(self._pieces)
@@ -58,8 +58,5 @@ class GeneticAlgorithm(object):
                 return best
 
             self._population = new_population
-
-            if verbose:
-                plot.show_fittest(best.to_image(), "Generation: {} / {}".format(generation + 1, self._generations))
 
         return best
