@@ -9,7 +9,7 @@ import cv2
 
 from jigsaw.utils import assemble_image, flatten_image
 
-MIN_PIECE_SIZE = 28
+MIN_PIECE_SIZE = 10
 MAX_PIECE_SIZE = 59
 DEFAULT_PIECE_SIZE = 28
 
